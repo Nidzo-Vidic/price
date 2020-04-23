@@ -1,12 +1,12 @@
 import click
 import mechanicalsoup
 
+
 @click.command()
 @click.option('--radius', '-r', default=5, help='Radius der Tankstellen')
 @click.option('--city', '-c', required=True, help='Stadt')
 @click.option('--type', '-t', required=True, help='Diesel, E10, E5, SuperPlus und die kleingeschriebenen Varianten')
 def price(radius, city, type):
-
     types = {
         'diesel': 3,
         'e10': 5,
@@ -41,7 +41,12 @@ def price(radius, city, type):
         patrol_street = patrol.find(class_='fuel-station-location-street').get_text().strip()
         patrol_city = patrol.find(class_='fuel-station-location-city').get_text().strip()
         patrol_radius = patrol.find(class_='fuel-station-location-distance d-flex justify-content-end').get_text().strip()
-        click.secho(f'{price:<6} | {patrol_name[0:16]:<16} | {patrol_city:<23} | {patrol_street:<30} | {patrol_radius}', fg='white')
+
+        maps_url = f'https://www.google.com/maps/place/{patrol_street}+{patrol_city}'
+        maps_link = f'\u001b]8;;{maps_url}\u001b\\{patrol_street:<30} \u001b]8;;\u001b\\'
+
+        click.secho(f'{price:<6} | {patrol_name[0:16]:<16} | {patrol_city:<23} | {maps_link} | {patrol_radius}', fg='white')
+
 
 if __name__ == '__main__':
     price()

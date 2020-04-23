@@ -10,6 +10,6 @@ setup(
     ],
     entry_points='''
         [console_scripts]
-        price=price.cli:price
+        price=price:price
     '''
 )

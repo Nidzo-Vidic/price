@@ -1,6 +1,6 @@
 # Price
 
-CLI-Tool, dass den momentanen Sprit Preis in der gewählten Stadt angbit.
+CLI-Tool, das den momentanen Sprit Preis in der gewählten Stadt angbit.
 
 ## Installation
 
